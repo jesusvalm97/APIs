@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32602.291
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPIEFSample", "WebAPIEFSample\WebAPIEFSample.csproj", "{D0164D2A-E8D6-4401-B556-3B686C18EF77}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D0164D2A-E8D6-4401-B556-3B686C18EF77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0164D2A-E8D6-4401-B556-3B686C18EF77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0164D2A-E8D6-4401-B556-3B686C18EF77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0164D2A-E8D6-4401-B556-3B686C18EF77}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {012CB0D9-2D4D-41D1-B901-99ED8ECC2B3E}
+	EndGlobalSection
+EndGlobal
