@@ -9,6 +9,6 @@ namespace TestApi01.Repository
     public interface IProductosEnMemoria
     {
         IEnumerable<Producto> GetProductos();
-        Producto GetProducto(int id);
+        Producto GetProducto(string SKU);
     }
 }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TestApi01.DTO;
 using TestApi01.Models;
 using TestApi01.Repository;
 
@@ -21,16 +22,16 @@ namespace TestApi01.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Producto> GetProductos()
+        public IEnumerable<ProductoDTO> GetProductos()
         {
-            var result = repositorio.GetProductos();
+            var result = repositorio.GetProductos().Select(p => p.ConvertirDTO());
             return result;
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<Producto> GetProducto(int id)
+        [HttpGet("{codProducto}")]
+        public ActionResult<ProductoDTO> GetProducto(string codProducto)
         {
-            var result = repositorio.GetProducto(id);
+            var result = repositorio.GetProducto(codProducto).ConvertirDTO();
 
             if (result is null)
             {

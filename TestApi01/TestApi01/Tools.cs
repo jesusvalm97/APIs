@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using TestApi01.DTO;
+using TestApi01.Models;
+
+namespace TestApi01
+{
+    public static class Tools
+    {
+        /// <summary>
+        /// Metodo para transformar/mapear un producto a productoDTO
+        /// </summary>
+        /// <param name="producto"></param>
+        /// <returns></returns>
+        //En el metodo al poner this en el paramatreo, indica que este metodo es una extensión de la clase producto
+        public static ProductoDTO ConvertirDTO(this Producto producto)
+        {
+            if (producto != null)
+            {
+                return new ProductoDTO()
+                {
+                    Nombre = producto.Nombre,
+                    Descripcion = producto.Descripcion,
+                    Precio = producto.Precio,
+                    SKU = producto.SKU
+                };
+            }
+
+            return null;
+        }
+    }
+}
