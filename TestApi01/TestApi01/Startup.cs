@@ -26,6 +26,9 @@ namespace TestApi01
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Inyectando la dependencia de la interfaz de productos en memoria
+            services.AddSingleton<Repository.IProductosEnMemoria, Repository.ProductosEnMemoria>();
+
             services.AddControllers();
             services.AddMvc();
 
@@ -44,7 +47,7 @@ namespace TestApi01
 
                 app.UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "TestApi01 V1");
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "TestApi01 v1");
                 });
             }
 

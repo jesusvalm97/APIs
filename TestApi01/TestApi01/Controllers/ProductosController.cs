@@ -13,11 +13,11 @@ namespace TestApi01.Controllers
     [ApiController]
     public class ProductosController : ControllerBase
     {
-        private readonly ProductosEnMemoria repositorio;
+        private readonly IProductosEnMemoria repositorio;
 
-        public ProductosController()
+        public ProductosController(IProductosEnMemoria r)
         {
-            repositorio = new ProductosEnMemoria();
+            repositorio = r;
         }
 
         [HttpGet]

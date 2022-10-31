@@ -6,7 +6,7 @@ using TestApi01.Models;
 
 namespace TestApi01.Repository
 {
-    public class ProductosEnMemoria
+    public class ProductosEnMemoria : IProductosEnMemoria
     {
         private readonly List<Producto> productos = new List<Producto>() {
             new Producto(){ Id = 1, Nombre = "Martillo", Descripcion = "Martillo super preciso", Precio = 12.99, FechaAlta = DateTime.Now },
