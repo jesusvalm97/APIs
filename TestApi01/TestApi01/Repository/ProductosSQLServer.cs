@@ -31,7 +31,7 @@ namespace TestApi01.Repository
             return new SqlConnection(CadenaConexion);
         }
 
-        public void BorrarProducto(string SKU)
+        public async Task BorrarProductoAsync(string SKU)
         {
             SqlConnection sqlConnection = Conexion();
             SqlCommand sqlCommand = null;
@@ -43,7 +43,7 @@ namespace TestApi01.Repository
                 sqlCommand.CommandText = "dbo.EliminarProductos";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.Parameters.Add("@SKU", SqlDbType.VarChar, 50).Value = SKU;
-                sqlCommand.ExecuteNonQuery();
+                await sqlCommand.ExecuteNonQueryAsync();
             }
             catch (Exception exception)
             {
@@ -55,9 +55,11 @@ namespace TestApi01.Repository
                 sqlConnection.Close();
                 sqlConnection.Dispose();
             }
+
+            await Task.CompletedTask;
         }
 
-        public void CrearProducto(Producto producto)
+        public async Task CrearProductoAsync(Producto producto)
         {
             SqlConnection sqlConnection = Conexion();
             SqlCommand sqlCommand = null;
@@ -73,7 +75,7 @@ namespace TestApi01.Repository
                 sqlCommand.Parameters.Add("@Descripcion", SqlDbType.VarChar, 5000).Value = producto.Descripcion;
                 sqlCommand.Parameters.Add("@Precio", SqlDbType.Float).Value = producto.Precio;
                 sqlCommand.Parameters.Add("@SKU", SqlDbType.VarChar, 50).Value = producto.SKU;
-                sqlCommand.ExecuteNonQuery();
+                await sqlCommand.ExecuteNonQueryAsync();
             }
             catch (Exception exception)
             {
@@ -85,9 +87,11 @@ namespace TestApi01.Repository
                 sqlConnection.Close();
                 sqlConnection.Dispose();
             }
+
+            await Task.CompletedTask;
         }
 
-        public Producto GetProducto(string SKU)
+        public async Task<Producto> GetProductoAsync(string SKU)
         {
             Producto producto = null;
 
@@ -102,7 +106,7 @@ namespace TestApi01.Repository
                 sqlCommand.CommandType = CommandType.StoredProcedure;
 
                 sqlCommand.Parameters.Add("@SKU", SqlDbType.VarChar, 50).Value = SKU;
-                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                SqlDataReader sqlDataReader = await sqlCommand.ExecuteReaderAsync();
 
                 if (sqlDataReader.Read())
                 {
@@ -127,7 +131,7 @@ namespace TestApi01.Repository
             return producto;
         }
 
-        public IEnumerable<Producto> GetProductos()
+        public async Task<IEnumerable<Producto>> GetProductosAsync()
         {
             List<Producto> productos = new List<Producto>();
             Producto producto = null;
@@ -141,7 +145,7 @@ namespace TestApi01.Repository
                 sqlCommand = sqlConnection.CreateCommand();
                 sqlCommand.CommandText = "dbo.ObtenerProductos";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
-                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                SqlDataReader sqlDataReader = await sqlCommand.ExecuteReaderAsync();
 
                 while (sqlDataReader.Read())
                 {
@@ -167,7 +171,7 @@ namespace TestApi01.Repository
             return productos;
         }
 
-        public void ModificarProducto(Producto producto)
+        public async Task ModificarProductoAsync(Producto producto)
         {
             SqlConnection sqlConnection = Conexion();
             SqlCommand sqlCommand = null;
@@ -183,7 +187,7 @@ namespace TestApi01.Repository
                 sqlCommand.Parameters.Add("@Descripcion", SqlDbType.VarChar, 5000).Value = producto.Descripcion;
                 sqlCommand.Parameters.Add("@Precio", SqlDbType.Float).Value = producto.Precio;
                 sqlCommand.Parameters.Add("@SKU", SqlDbType.VarChar, 50).Value = producto.SKU;
-                sqlCommand.ExecuteNonQuery();
+                await sqlCommand.ExecuteNonQueryAsync();
             }
             catch (Exception exception)
             {
@@ -195,6 +199,8 @@ namespace TestApi01.Repository
                 sqlConnection.Close();
                 sqlConnection.Dispose();
             }
+
+            await Task.CompletedTask;
         }
     }
 }

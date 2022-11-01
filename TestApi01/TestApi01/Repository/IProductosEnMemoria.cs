@@ -8,11 +8,11 @@ namespace TestApi01.Repository
 {
     public interface IProductosEnMemoria
     {
-        IEnumerable<Producto> GetProductos();
-        Producto GetProducto(string SKU);
-        void CrearProducto(Producto producto);
-        void ModificarProducto(Producto producto);
-        void BorrarProducto(string SKU);
+        Task<IEnumerable<Producto>> GetProductosAsync();
+        Task<Producto> GetProductoAsync(string SKU);
+        Task CrearProductoAsync(Producto producto);
+        Task ModificarProductoAsync(Producto producto);
+        Task BorrarProductoAsync(string SKU);
 
     }
 }

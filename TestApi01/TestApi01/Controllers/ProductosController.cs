@@ -22,16 +22,16 @@ namespace TestApi01.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<ProductoDTO> GetProductos()
+        public async Task<IEnumerable<ProductoDTO>> GetProductos()
         {
-            var result = repositorio.GetProductos().Select(p => p.ConvertirDTO());
+            var result = (await repositorio.GetProductosAsync()).Select(p => p.ConvertirDTO());
             return result;
         }
 
         [HttpGet("{codProducto}")]
-        public ActionResult<ProductoDTO> GetProducto(string codProducto)
+        public async Task<ActionResult<ProductoDTO>> GetProducto(string codProducto)
         {
-            var result = repositorio.GetProducto(codProducto).ConvertirDTO();
+            var result = (await repositorio.GetProductoAsync(codProducto)).ConvertirDTO();
 
             if (result is null)
             {
@@ -42,7 +42,7 @@ namespace TestApi01.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ProductoDTO> CrearProducto(ProductoDTO productoDTO)
+        public async Task<ActionResult<ProductoDTO>> CrearProducto(ProductoDTO productoDTO)
         {
             Producto producto = new Producto()
             {
@@ -52,15 +52,15 @@ namespace TestApi01.Controllers
                 FechaAlta = DateTime.Now,
                 SKU = productoDTO.SKU
             };
-            repositorio.CrearProducto(producto);
+            await repositorio.CrearProductoAsync(producto);
 
             return producto.ConvertirDTO();
         }
 
         [HttpPut]
-        public ActionResult<ProductoDTO> ModificarProducto(string codProducto, ProductoDTO productoDTO)
+        public async Task<ActionResult<ProductoDTO>> ModificarProducto(string codProducto, ProductoDTO productoDTO)
         {
-            Producto productoExistente = repositorio.GetProducto(codProducto);
+            Producto productoExistente = await repositorio.GetProductoAsync(codProducto);
             if (productoExistente is null)
             {
                 return NotFound();
@@ -69,20 +69,20 @@ namespace TestApi01.Controllers
             productoExistente.Nombre = productoDTO.Nombre;
             productoExistente.Descripcion = productoDTO.Descripcion;
             productoExistente.Precio = productoDTO.Precio;
-            repositorio.ModificarProducto(productoExistente);
+            await repositorio.ModificarProductoAsync(productoExistente);
 
             return productoExistente.ConvertirDTO();
         }
 
         [HttpDelete]
-        public ActionResult BorrarProducto(string codProducto)
+        public async Task<ActionResult> BorrarProducto(string codProducto)
         {
-            Producto productoExistente = repositorio.GetProducto(codProducto);
+            Producto productoExistente = await repositorio.GetProductoAsync(codProducto);
             if (productoExistente is null)
             {
                 return NotFound();
             }
-            repositorio.BorrarProducto(codProducto);
+            await repositorio.BorrarProductoAsync(codProducto);
 
             return NoContent();
         }

@@ -15,31 +15,34 @@ namespace TestApi01.Repository
             new Producto(){ Id = 4, Nombre = "Foco", Descripcion = "Foco chido", Precio = 3, FechaAlta = DateTime.Now, SKU = "FOC01" }
         };
 
-        public IEnumerable<Producto> GetProductos()
+        public async Task<IEnumerable<Producto>> GetProductosAsync()
         {
-            return productos;
+            return await Task.FromResult(productos);
         }
 
-        public Producto GetProducto(string SKU)
+        public async Task<Producto> GetProductoAsync(string SKU)
         {
-            return productos.Where(p => p.SKU == SKU).FirstOrDefault();
+            return await Task.FromResult(productos.Where(p => p.SKU == SKU).FirstOrDefault());
         }
 
-        public void CrearProducto(Producto producto)
+        public async Task CrearProductoAsync(Producto producto)
         {
             productos.Add(producto);
+            await Task.CompletedTask;
         }
 
-        public void ModificarProducto(Producto producto)
+        public async Task ModificarProductoAsync(Producto producto)
         {
             int index = productos.FindIndex(p => p.Id == producto.Id);
             productos[index] = producto;
+            await Task.CompletedTask;
         }
 
-        public void BorrarProducto(string SKU)
+        public async Task BorrarProductoAsync(string SKU)
         {
             int index = productos.FindIndex(p => p.SKU == SKU);
             productos.RemoveAt(index);
+            await Task.CompletedTask;
         }
     }
 }
