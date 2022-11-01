@@ -148,7 +148,32 @@ namespace TestApi01.Repository
 
         public void ModificarProducto(Producto producto)
         {
-            throw new NotImplementedException();
+            SqlConnection sqlConnection = Conexion();
+            SqlCommand sqlCommand = null;
+
+            try
+            {
+                sqlConnection.Open();
+                sqlCommand = sqlConnection.CreateCommand();
+                sqlCommand.CommandText = "dbo.ModificarProductos";
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                sqlCommand.Parameters.Add("@Nombre", SqlDbType.VarChar, 500).Value = producto.Nombre;
+                sqlCommand.Parameters.Add("@Descripcion", SqlDbType.VarChar, 5000).Value = producto.Descripcion;
+                sqlCommand.Parameters.Add("@Precio", SqlDbType.Float).Value = producto.Precio;
+                sqlCommand.Parameters.Add("@SKU", SqlDbType.VarChar, 50).Value = producto.SKU;
+                sqlCommand.ExecuteNonQuery();
+            }
+            catch (Exception exception)
+            {
+                throw new Exception("Se produjo un error al modificar el producto: " + exception.ToString());
+            }
+            finally
+            {
+                sqlCommand.Dispose();
+                sqlConnection.Close();
+                sqlConnection.Dispose();
+            }
         }
     }
 }

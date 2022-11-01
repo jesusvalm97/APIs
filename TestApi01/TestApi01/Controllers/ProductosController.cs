@@ -69,7 +69,6 @@ namespace TestApi01.Controllers
             productoExistente.Nombre = productoDTO.Nombre;
             productoExistente.Descripcion = productoDTO.Descripcion;
             productoExistente.Precio = productoDTO.Precio;
-            productoExistente.SKU = productoDTO.SKU;
             repositorio.ModificarProducto(productoExistente);
 
             return productoExistente.ConvertirDTO();
