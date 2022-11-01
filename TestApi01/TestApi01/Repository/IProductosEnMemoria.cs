@@ -12,5 +12,7 @@ namespace TestApi01.Repository
         Producto GetProducto(string SKU);
         void CrearProducto(Producto producto);
         void ModificarProducto(Producto producto);
+        void BorrarProducto(string SKU);
+
     }
 }

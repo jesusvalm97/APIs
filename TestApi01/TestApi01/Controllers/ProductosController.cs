@@ -75,5 +75,18 @@ namespace TestApi01.Controllers
 
             return productoExistente.ConvertirDTO();
         }
+
+        [HttpDelete]
+        public ActionResult BorrarProducto(string codProducto)
+        {
+            Producto productoExistente = repositorio.GetProducto(codProducto);
+            if (productoExistente is null)
+            {
+                return NotFound();
+            }
+            repositorio.BorrarProducto(codProducto);
+
+            return NoContent();
+        }
     }
 }

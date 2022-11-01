@@ -35,5 +35,11 @@ namespace TestApi01.Repository
             int index = productos.FindIndex(p => p.Id == producto.Id);
             productos[index] = producto;
         }
+
+        public void BorrarProducto(string SKU)
+        {
+            int index = productos.FindIndex(p => p.SKU == SKU);
+            productos.RemoveAt(index);
+        }
     }
 }
