@@ -33,7 +33,28 @@ namespace TestApi01.Repository
 
         public void BorrarProducto(string SKU)
         {
-            throw new NotImplementedException();
+            SqlConnection sqlConnection = Conexion();
+            SqlCommand sqlCommand = null;
+
+            try
+            {
+                sqlConnection.Open();
+                sqlCommand = sqlConnection.CreateCommand();
+                sqlCommand.CommandText = "dbo.EliminarProductos";
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.Add("@SKU", SqlDbType.VarChar, 50).Value = SKU;
+                sqlCommand.ExecuteNonQuery();
+            }
+            catch (Exception exception)
+            {
+                throw new Exception("Se produjo un error al eliminar el producto: " + exception.ToString());
+            }
+            finally
+            {
+                sqlCommand.Dispose();
+                sqlConnection.Close();
+                sqlConnection.Dispose();
+            }
         }
 
         public void CrearProducto(Producto producto)
