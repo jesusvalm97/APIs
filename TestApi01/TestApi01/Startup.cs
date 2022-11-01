@@ -34,7 +34,10 @@ namespace TestApi01
             //Inyectando la dependencia de la interfaz de productos en memoria
             services.AddSingleton<Repository.IProductosEnMemoria, Repository.ProductosSQLServer>();
 
-            services.AddControllers();
+            services.AddControllers(options => 
+            {
+                options.SuppressAsyncSuffixInActionNames = false;
+            });
             services.AddMvc();
 
             services.AddSwaggerGen(c => {
