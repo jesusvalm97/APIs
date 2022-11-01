@@ -57,5 +57,23 @@ namespace TestApi01.Controllers
 
             return producto.ConvertirDTO();
         }
+
+        [HttpPut]
+        public ActionResult<ProductoDTO> ModificarProducto(string codProducto, ProductoDTO productoDTO)
+        {
+            Producto productoExistente = repositorio.GetProducto(codProducto);
+            if (productoExistente is null)
+            {
+                return NotFound();
+            }
+
+            productoExistente.Nombre = productoDTO.Nombre;
+            productoExistente.Descripcion = productoDTO.Descripcion;
+            productoExistente.Precio = productoDTO.Precio;
+            productoExistente.SKU = productoDTO.SKU;
+            repositorio.ModificarProducto(productoExistente);
+
+            return productoExistente.ConvertirDTO();
+        }
     }
 }

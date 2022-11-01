@@ -11,5 +11,6 @@ namespace TestApi01.Repository
         IEnumerable<Producto> GetProductos();
         Producto GetProducto(string SKU);
         void CrearProducto(Producto producto);
+        void ModificarProducto(Producto producto);
     }
 }

@@ -29,5 +29,11 @@ namespace TestApi01.Repository
         {
             productos.Add(producto);
         }
+
+        public void ModificarProducto(Producto producto)
+        {
+            int index = productos.FindIndex(p => p.Id == producto.Id);
+            productos[index] = producto;
+        }
     }
 }
