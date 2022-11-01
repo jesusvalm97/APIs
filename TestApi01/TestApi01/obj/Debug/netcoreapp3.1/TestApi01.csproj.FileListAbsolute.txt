@@ -6,7 +6,6 @@ C:\Desarrollo\APIs\TestApi01\TestApi01\bin\Debug\netcoreapp3.1\TestApi01.runtime
 C:\Desarrollo\APIs\TestApi01\TestApi01\bin\Debug\netcoreapp3.1\TestApi01.runtimeconfig.dev.json
 C:\Desarrollo\APIs\TestApi01\TestApi01\bin\Debug\netcoreapp3.1\TestApi01.dll
 C:\Desarrollo\APIs\TestApi01\TestApi01\bin\Debug\netcoreapp3.1\TestApi01.pdb
-C:\Desarrollo\APIs\TestApi01\TestApi01\obj\Debug\netcoreapp3.1\TestApi01.csproj.AssemblyReference.cache
 C:\Desarrollo\APIs\TestApi01\TestApi01\obj\Debug\netcoreapp3.1\TestApi01.GeneratedMSBuildEditorConfig.editorconfig
 C:\Desarrollo\APIs\TestApi01\TestApi01\obj\Debug\netcoreapp3.1\TestApi01.AssemblyInfoInputs.cache
 C:\Desarrollo\APIs\TestApi01\TestApi01\obj\Debug\netcoreapp3.1\TestApi01.AssemblyInfo.cs
@@ -25,3 +24,10 @@ C:\Desarrollo\APIs\TestApi01\TestApi01\bin\Debug\netcoreapp3.1\Swashbuckle.AspNe
 C:\Desarrollo\APIs\TestApi01\TestApi01\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Desarrollo\APIs\TestApi01\TestApi01\obj\Debug\netcoreapp3.1\TestApi01.MvcApplicationPartsAssemblyInfo.cs
 C:\Desarrollo\APIs\TestApi01\TestApi01\obj\Debug\netcoreapp3.1\TestApi01.csproj.CopyComplete
+C:\Desarrollo\APIs\TestApi01\TestApi01\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+C:\Desarrollo\APIs\TestApi01\TestApi01\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+C:\Desarrollo\APIs\TestApi01\TestApi01\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+C:\Desarrollo\APIs\TestApi01\TestApi01\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+C:\Desarrollo\APIs\TestApi01\TestApi01\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Desarrollo\APIs\TestApi01\TestApi01\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Desarrollo\APIs\TestApi01\TestApi01\obj\Debug\netcoreapp3.1\TestApi01.csproj.AssemblyReference.cache

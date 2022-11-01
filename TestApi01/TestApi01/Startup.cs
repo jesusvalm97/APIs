@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.OpenApi.Models;
+using TestApi01.Repository;
 
 namespace TestApi01
 {
@@ -26,8 +27,12 @@ namespace TestApi01
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Obtener la cadena de conexion de SQL
+            var cadenaConexionSQLConfiguracion = new AccesoDatos(Configuration.GetConnectionString("SQL"));
+            services.AddSingleton(cadenaConexionSQLConfiguracion);
+
             //Inyectando la dependencia de la interfaz de productos en memoria
-            services.AddSingleton<Repository.IProductosEnMemoria, Repository.ProductosEnMemoria>();
+            services.AddSingleton<Repository.IProductosEnMemoria, Repository.ProductosSQLServer>();
 
             services.AddControllers();
             services.AddMvc();

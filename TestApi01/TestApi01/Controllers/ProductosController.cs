@@ -46,7 +46,6 @@ namespace TestApi01.Controllers
         {
             Producto producto = new Producto()
             {
-                Id = repositorio.GetProductos().Max(p => p.Id) + 1,
                 Nombre = productoDTO.Nombre,
                 Descripcion = productoDTO.Descripcion,
                 Precio = productoDTO.Precio,
