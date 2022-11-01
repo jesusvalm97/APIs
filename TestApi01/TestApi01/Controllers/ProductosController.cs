@@ -40,5 +40,22 @@ namespace TestApi01.Controllers
 
             return result;
         }
+
+        [HttpPost]
+        public ActionResult<ProductoDTO> CrearProducto(ProductoDTO productoDTO)
+        {
+            Producto producto = new Producto()
+            {
+                Id = repositorio.GetProductos().Max(p => p.Id) + 1,
+                Nombre = productoDTO.Nombre,
+                Descripcion = productoDTO.Descripcion,
+                Precio = productoDTO.Precio,
+                FechaAlta = DateTime.Now,
+                SKU = productoDTO.SKU
+            };
+            repositorio.CrearProducto(producto);
+
+            return producto.ConvertirDTO();
+        }
     }
 }

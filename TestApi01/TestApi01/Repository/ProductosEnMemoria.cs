@@ -24,5 +24,10 @@ namespace TestApi01.Repository
         {
             return productos.Where(p => p.SKU == SKU).FirstOrDefault();
         }
+
+        public void CrearProducto(Producto producto)
+        {
+            productos.Add(producto);
+        }
     }
 }
