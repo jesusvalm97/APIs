@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using TestApi01.Models;
+using Microsoft.Extensions.Logging;
 
 namespace TestApi01.Repository
 {
@@ -12,12 +13,14 @@ namespace TestApi01.Repository
     {
         //Vaeriable para guardar la conexión a la base de datos
         private string CadenaConexion;
+        private readonly ILogger<ProductosSQLServer> log;
 
         #region Constructores
 
-        public ProductosSQLServer(AccesoDatos accesoDatos)
+        public ProductosSQLServer(AccesoDatos accesoDatos, ILogger<ProductosSQLServer> l)
         {
             CadenaConexion = accesoDatos.CadenaConexionSQL;
+            log = l;
         }
 
         #endregion
@@ -47,7 +50,7 @@ namespace TestApi01.Repository
             }
             catch (Exception exception)
             {
-                throw new Exception("Se produjo un error al eliminar el producto: " + exception.ToString());
+                Tools.Error(exception, log);
             }
             finally
             {
@@ -79,7 +82,7 @@ namespace TestApi01.Repository
             }
             catch (Exception exception)
             {
-                throw new Exception("Se produjo un error al dar de alta: " + exception.ToString());
+                Tools.Error(exception, log);
             }
             finally
             {
@@ -119,7 +122,7 @@ namespace TestApi01.Repository
             }
             catch (Exception exception)
             {
-                throw new Exception("Se produjo un error al dar de alta: " + exception.ToString());
+                Tools.Error(exception, log);
             }
             finally
             {
@@ -159,7 +162,7 @@ namespace TestApi01.Repository
             }
             catch (Exception exception)
             {
-                throw new Exception("Se produjo un error al dar de alta: " + exception.ToString());
+                Tools.Error(exception, log);
             }
             finally
             {
@@ -191,7 +194,7 @@ namespace TestApi01.Repository
             }
             catch (Exception exception)
             {
-                throw new Exception("Se produjo un error al modificar el producto: " + exception.ToString());
+                Tools.Error(exception, log);
             }
             finally
             {

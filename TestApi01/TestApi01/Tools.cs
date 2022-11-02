@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,6 +30,12 @@ namespace TestApi01
             }
 
             return null;
+        }
+
+        public static void Error(Exception exception, ILogger log)
+        {
+            log.LogError(exception.ToString());
+            throw new Exception("Se produjo un error: " + exception.Message);
         }
     }
 }

@@ -30,3 +30,6 @@ C:\Desarrollo\APIs\TestApi01\TestApi01\bin\Debug\netcoreapp3.1\runtimes\win-x64\
 C:\Desarrollo\APIs\TestApi01\TestApi01\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
 C:\Desarrollo\APIs\TestApi01\TestApi01\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Desarrollo\APIs\TestApi01\TestApi01\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Desarrollo\APIs\TestApi01\TestApi01\bin\Debug\netcoreapp3.1\nlog.config
+C:\Desarrollo\APIs\TestApi01\TestApi01\bin\Debug\netcoreapp3.1\NLog.dll
+C:\Desarrollo\APIs\TestApi01\TestApi01\bin\Debug\netcoreapp3.1\NLog.Extensions.Logging.dll
