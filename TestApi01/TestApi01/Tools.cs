@@ -32,6 +32,20 @@ namespace TestApi01
             return null;
         }
 
+        public static UsuarioDTO ConvertirDTO(this UsuarioAPI usuario)
+        {
+            if (usuario != null)
+            {
+                return new UsuarioDTO()
+                {
+                    Usuario = usuario.Usuario,
+                    Token = usuario.Token
+                };
+            }
+
+            return null;
+        }
+
         public static void Error(Exception exception, ILogger log)
         {
             log.LogError(exception.ToString());

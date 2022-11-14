@@ -1,17 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.OpenApi.Models;
 using TestApi01.Repository;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace TestApi01
 {
@@ -33,6 +29,8 @@ namespace TestApi01
 
             //Inyectando la dependencia de la interfaz de productos en memoria
             services.AddSingleton<Repository.IProductosEnMemoria, Repository.ProductosSQLServer>();
+            //Inyecto la dependencia de la interfaz de usuario
+            services.AddSingleton<Repository.IUsuariosSQLServer, Repository.UsuarioSQLServer>();
 
             services.AddControllers(options => 
             {
@@ -42,6 +40,21 @@ namespace TestApi01
 
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TestApi01", Version = "v1" });
+            });
+
+            //Setear la configuracion del Jason Web Token
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Configuration["JWT:Issuer"],
+                    ValidAudience = Configuration["JWT:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:ClaveSecreta"]))
+                };
             });
         }
 

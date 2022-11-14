@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,7 @@ namespace TestApi01.Controllers
 {
     [Route("productos")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class ProductosController : ControllerBase
     {
         private readonly IProductosEnMemoria repositorio;
@@ -22,6 +25,7 @@ namespace TestApi01.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IEnumerable<ProductoDTO>> GetProductos()
         {
             var result = (await repositorio.GetProductosAsync()).Select(p => p.ConvertirDTO());
@@ -29,6 +33,7 @@ namespace TestApi01.Controllers
         }
 
         [HttpGet("{codProducto}")]
+        [Authorize]
         public async Task<ActionResult<ProductoDTO>> GetProducto(string codProducto)
         {
             var result = (await repositorio.GetProductoAsync(codProducto)).ConvertirDTO();
@@ -42,6 +47,7 @@ namespace TestApi01.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<ProductoDTO>> CrearProducto(ProductoDTO productoDTO)
         {
             Producto producto = new Producto()
@@ -58,6 +64,7 @@ namespace TestApi01.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<ActionResult<ProductoDTO>> ModificarProducto(string codProducto, ProductoDTO productoDTO)
         {
             Producto productoExistente = await repositorio.GetProductoAsync(codProducto);
@@ -75,6 +82,7 @@ namespace TestApi01.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         public async Task<ActionResult> BorrarProducto(string codProducto)
         {
             Producto productoExistente = await repositorio.GetProductoAsync(codProducto);
