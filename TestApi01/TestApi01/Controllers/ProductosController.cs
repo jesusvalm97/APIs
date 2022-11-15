@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using TestApi01.DTO;
@@ -93,6 +94,25 @@ namespace TestApi01.Controllers
             await repositorio.BorrarProductoAsync(codProducto);
 
             return NoContent();
+        }
+
+        [HttpPost("GuardarImagen")]
+        public async Task<string> GuardarImagen([FromForm] SubirImagenAPI fichero)
+        {
+            string ruta = string.Empty;
+
+            if(fichero.Archivo.Length > 0)
+            {
+                string nombreArchivo = Guid.NewGuid().ToString() + ".jpg";
+                ruta = $"Imagenes/{nombreArchivo}";
+
+                using (var stream = new FileStream(ruta, FileMode.Create))
+                {
+                    await fichero.Archivo.CopyToAsync(stream);
+                }
+            }
+
+            return ruta;
         }
     }
 }
